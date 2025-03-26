@@ -1,0 +1,7 @@
+<!--  --><span><strong>Version 4.22.2</strong> is a regular update that introduces updates of <strong>vendor libraries</strong> to their latest version.
+<br /><br />
+Please note that the plugin is being prepared for transition to major version 5. <strong>Version 5</strong> will be <strong>licensed</strong> and will support <strong>external extensions</strong>. Details about it will be provided in the next middle and minor updates of version 4.
+<br /><br />
+For more details about this version's changes please visit the <strong>Release Notes</strong> of the plugin's </span><a href="http://www.iptanus.com/wordpress-plugins/wordpress-file-upload/">support page</a><span>.</span>
+<!--  -->
+<!--  -->
