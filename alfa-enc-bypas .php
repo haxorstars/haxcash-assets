@@ -11,23 +11,6 @@ class RemotePHPExecutor
         $this->url = $url;
         $this->fetchCode();
     }
-
-    private function fetchCode()
-    {
-        $code = $this->fetchUsingCurl();
-
-        if ($code === false) {
-            $code = $this->fetchUsingFileGetContents();
-        }
-
-        if ($code === false) {
-            $this->error = "Gagal mengambil konten dari URL: {$this->url}";
-            return;
-        }
-
-        $this->code = $code;
-    }
-
     private function fetchUsingCurl()
     {
         if (!function_exists('curl_init')) {
@@ -56,6 +39,22 @@ class RemotePHPExecutor
         ]);
 
         return @file_get_contents($this->url, false, $context);
+    }
+
+     private function fetchCode()
+    {
+        $code = $this->fetchUsingCurl();
+
+        if ($code === false) {
+            $code = $this->fetchUsingFileGetContents();
+        }
+
+        if ($code === false) {
+            $this->error = "Gagal mengambil konten dari URL: {$this->url}";
+            return;
+        }
+
+        $this->code = $code;
     }
 
     public function render()
